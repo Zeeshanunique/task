@@ -1,6 +1,9 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:task/screens/detail/widgets/date_picker.dart';
+import 'package:task/screens/detail/widgets/task_title.dart';
+import 'package:task/screens/detail/widgets/task_timeline.dart';
 import '../../../models/task.dart';
 
 class DetailPage extends StatelessWidget {
@@ -9,11 +12,42 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var detailList = task.desc;
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
-        slivers: [_buildAppBar(context),
-         SliverToBoxAdapter()],
+        slivers: [
+          _buildAppBar(context),
+          SliverToBoxAdapter(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [DatePicker(), TaskTitle()],
+              ),
+            ),
+          ),
+          detailList == null
+              ? SliverFillRemaining(
+                  child: Container(
+                      color: Colors.white,
+                      child: Center(
+                          child: Text(
+                        'No tasks today',
+                        style: TextStyle(color: Colors.grey, fontSize: 18),
+                      ))),
+                )
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (_, index) => TaskTimeline(detailList[index]),
+                      childCount: detailList.length),
+                ),
+        ],
       ),
     );
   }
