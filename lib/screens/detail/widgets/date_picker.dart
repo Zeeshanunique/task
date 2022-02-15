@@ -8,7 +8,7 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
-  final weekList = ['sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
+  final weekList = ['sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   final dayList = ['24', '25', '26', '27', '28', '29', '30'];
   var selected = 4;
 

@@ -35,7 +35,7 @@ class Task {
           desc: [
             {
               'time': '9:00 am',
-              'title': 'GO for a walk wit dog',
+              'title': 'Go for a walk with dog',
               'slot': '9:00 - 10:00 am',
               'tlColor': kRedDark,
               'bgcolor': kRedLight
